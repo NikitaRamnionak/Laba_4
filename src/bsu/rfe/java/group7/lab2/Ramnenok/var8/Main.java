@@ -1,4 +1,4 @@
-package bsu.rfe.java.group7.lab2.Ramnenok.varС1;
+package bsu.rfe.java.group7.lab2.Ramnenok.var8;
 
 public class Main {
 
