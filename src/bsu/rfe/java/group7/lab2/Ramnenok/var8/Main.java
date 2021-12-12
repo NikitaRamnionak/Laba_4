@@ -107,9 +107,6 @@ public class Main extends JFrame {
         getContentPane().add(display, BorderLayout.CENTER);
     }
 
-}
-
-
     protected void openGraphics (File selectedFile){
         try {
 // Шаг 1 - Открыть поток чтения данных, связанный с входным файловым потоком
@@ -151,6 +148,26 @@ Double.SIZE/8 байт;
             JOptionPane.showMessageDialog(Main.this, "Ошибка чтения координат точек из файла", "Ошибка загрузки данных", JOptionPane.WARNING_MESSAGE);
             return;
         }
+    }
+    public static void main(String[] args) {
+// Создать и показать экземпляр главного окна приложения
+        Main frame = new Main();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+    // Класс-слушатель событий, связанных с отображением меню
+    private class GraphicsMenuListener implements MenuListener {
+        // Обработчик, вызываемый перед показом меню
+        public void menuSelected(MenuEvent e) {
+// Доступность или недоступность элементов меню "График" определяется загруженностью данных
+            showAxisMenuItem.setEnabled(fileLoaded);
+            showMarkersMenuItem.setEnabled(fileLoaded);
+            showAxisSegmentsMenuItem.setEnabled(fileLoaded);
+        }
+        // Обработчик, вызываемый после того, как меню исчезло с экрана
+        public void menuDeselected(MenuEvent e) {}
+        // Обработчик, вызываемый в случае отмены выбора пункта меню (очень редкая ситуация)
+        public void menuCanceled(MenuEvent e) {}
     }
 }
 
